@@ -170,3 +170,53 @@ console.log(messi.goals);
 ```
 
 Note: Inheritance holo uttoradhikar sutre powa. Dada er assets pabe ter sele and baba ta pabe ta sele. Jemon ekta common pattern tkbe jet ter child class e use kora jabe parent thke neye alada kore abr ek e jinis bar bar korte hobe na
+
+### Abstraction
+
+Abstraction is a fundamental concept in object-oriented programming (OOP) that refers to the practice of hiding the implementation details of an object and exposing only the essential features to the user. In JavaScript, abstraction is achieved by using abstract classes and interfaces.
+
+Example:
+
+```js
+class BetterArray {
+  #items;
+
+  constructor() {
+    this.#items = [];
+  }
+
+  getItems() {
+    return [...this.#items];
+  }
+
+  addItem(item) {
+    this.#items.push(item);
+  }
+
+  removeItem(deleteItem) {
+    this.#items = this.#items.filter((item) => item !== deleteItem);
+  }
+
+  modifyItem(itemChange, newItem) {
+    const index = this.#items.indexOf(itemChange);
+
+    if (index !== 1) {
+      this.#items[index] = newItem;
+    }
+  }
+}
+
+const array = new BetterArray();
+array.addItem("I love Bangladesh");
+
+array.addItem("I love JavaScript");
+console.log(array.getItems());
+
+array.removeItem("I love Bangladesh");
+console.log(array.getItems());
+
+array.modifyItem("I love JavaScript", "I Love Programming");
+console.log(array.getItems());
+```
+
+Note: Jokhon kono Implementation k hide kora hoy but kaj thik motoi kore setai abstration. Jemon - ATM booth a amra tk tule but kivae seta kaj kore amra jani na and Car driver chalay just hat r pa deye but engine er moddhe kivabe seta hosse seta hoyte ter janar dorker nai. Ei rokom hajaro kaj ase jeta amra kore but amr implentation dekhe na.
