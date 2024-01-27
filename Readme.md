@@ -220,3 +220,58 @@ console.log(array.getItems());
 ```
 
 Note: Jokhon kono Implementation k hide kora hoy but kaj thik motoi kore setai abstration. Jemon - ATM booth a amra tk tule but kivae seta kaj kore amra jani na and Car driver chalay just hat r pa deye but engine er moddhe kivabe seta hosse seta hoyte ter janar dorker nai. Ei rokom hajaro kaj ase jeta amra kore but amr implentation dekhe na.
+
+### Polymorphism
+
+Polymorphism is one of the four fundamental principles of Object-Oriented Programming (OOP). The term originates from Greek, where 'poly' means 'many' and 'morph' means 'forms'. So, polymorphism translates to 'many forms'. The principle allows objects to take on many forms depending on the context.
+
+Example:
+
+```js
+class Player {
+  #name;
+  #age;
+
+  constructor(name, age) {
+    this.#name = name;
+    this.#age = age;
+  }
+
+  getName() {
+    return this.#name;
+  }
+  getAge() {
+    return this.#age;
+  }
+
+  getPlayerDetails() {
+    return ` ${this.#name} is ${this.#age} years old`;
+  }
+}
+
+class Cricketer extends Player {
+  constructor(name, age, centuries) {
+    super(name, age);
+    this.centuries = centuries;
+  }
+
+  getPlayerDetails() {
+    return ` ${this.getName()} এর বয়স  ${this.getAge()} বছর`;
+  }
+}
+
+class Footboller extends Player {
+  constructor(name, age, goals) {
+    super(name, age);
+    this.goals = goals;
+  }
+}
+
+const musfiq = new Cricketer("Musfiqur Rahim", 36, 14);
+const messi = new Footboller("Leonal Messi", 33, 250);
+
+console.log(musfiq.getPlayerDetails());
+console.log(messi.getPlayerDetails());
+```
+
+Note: Polymorphism holo bohurupi. Jkn kono parent class er nirdisto kono method k ek ek child class er jonno ek ek rokom output dekhano doker tkn amra method overriding er maddome sei nirdisto child component er result change korte pare. Ei tai hosse polymorphism jar implementation same e thkbe but shap ta alada hobe.
