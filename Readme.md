@@ -123,4 +123,50 @@ class Player {
 // # use er maddhome property k private kora jate jara ei code neye kaj kore tara jeno ei ta follow kore kaj kore organized way te. Etar mane ei na j eta keo kono din access korte parbe na. Eta ekta organized way jeta maintain korei team player ra kaj korbe
 ```
 
-Note: Encapsulation holo ek e boisisto goto j method ba property gulo k ekta capsul ba ekta jaygay kore neye geye class er kase bole deya je ei sei property ba method. R e tai Encapsulation.
+Note: Encapsulation holo ek e boisisto goto j method ba property gulo k ekta capsul ba ekta jaygay kore neye geye class er kase bole deya je ei sei property ba method tumi jeta chao seta use korte paro `.` deye access nete paro. R e tai Encapsulation.
+
+### Inheritance:
+
+In programming, inheritance refers to passing down characteristics from a parent to a child so that a new piece of code can reuse and build upon the features of an existing one. JavaScript implements inheritance by using objects. Each object has an internal link to another object called its prototype.
+
+Example:
+
+```js
+class Player {
+  name;
+  age;
+
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  getPlayerDetails() {
+    return ` ${this.name} is ${this.age} years old`;
+  }
+}
+
+class Cricketer extends Player {
+  constructor(name, age, centuries) {
+    super(name, age);
+    this.centuries = centuries;
+  }
+}
+
+class Footboller extends Player {
+  constructor(name, age, goals) {
+    super(name, age);
+    this.goals = goals;
+  }
+}
+
+const musfiq = new Cricketer("Musfiqur Rahim", 36, 14);
+const messi = new Footboller("Leonal Messi", 33, 250);
+
+console.log(musfiq);
+console.log(musfiq.getPlayerDetails());
+console.log(messi);
+console.log(messi.goals);
+```
+
+Note: Inheritance holo uttoradhikar sutre powa. Dada er assets pabe ter sele and baba ta pabe ta sele. Jemon ekta common pattern tkbe jet ter child class e use kora jabe parent thke neye alada kore abr ek e jinis bar bar korte hobe na
