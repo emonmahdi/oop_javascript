@@ -572,3 +572,7 @@ try {
   errorHandler.handleError(error);
 }
 ```
+
+## JavaScript oops Interview Questions And Answers
+
+Link: [https://testbook.com/interview/javascript-oops-interview-questions]
