@@ -275,3 +275,300 @@ console.log(messi.getPlayerDetails());
 ```
 
 Note: Polymorphism holo bohurupi. Jkn kono parent class er nirdisto kono method k ek ek child class er jonno ek ek rokom output dekhano doker tkn amra method overriding er maddome sei nirdisto child component er result change korte pare. Ei tai hosse polymorphism jar implementation same e thkbe but shap ta alada hobe.
+
+## Some Codin Examples:
+
+### 1. Create a Class Hierarchy
+
+```js
+class Shape {
+  constructor(color) {
+    this.color = color;
+  }
+
+  draw() {
+    console.log(`Drawing a shape with color ${this.color}`);
+  }
+}
+
+class Circle extends Shape {
+  constructor(color, radius) {
+    super(color);
+    this.radius = radius;
+  }
+
+  draw() {
+    console.log(
+      `Drawing a circle with color ${this.color} and radius ${this.radius}`
+    );
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(color, width, height) {
+    super(color);
+    this.width = width;
+    this.height = height;
+  }
+
+  draw() {
+    console.log(
+      `Drawing a rectangle with color ${this.color}, width ${this.width}, and height ${this.height}`
+    );
+  }
+}
+
+// Usage
+const myCircle = new Circle("red", 5);
+myCircle.draw();
+
+const myRectangle = new Rectangle("blue", 8, 6);
+myRectangle.draw();
+```
+
+### 2. Encapsulation and Accessors
+
+```js
+class BankAccount {
+  #balance;
+
+  constructor(initialBalance) {
+    this.#balance = initialBalance;
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+  }
+
+  withdraw(amount) {
+    if (amount <= this.#balance) {
+      this.#balance -= amount;
+    } else {
+      console.log("Insufficient funds");
+    }
+  }
+}
+
+// Usage
+const account = new BankAccount(1000);
+console.log(account.getBalance()); // Output: 1000
+account.deposit(500);
+console.log(account.getBalance()); // Output: 1500
+account.withdraw(200);
+console.log(account.getBalance()); // Output: 1300
+account.withdraw(1500); // Output: Insufficient funds
+```
+
+### 3. Inheritance and Method Overriding
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  makeSound() {
+    console.log("Generic animal sound");
+  }
+}
+
+class Dog extends Animal {
+  makeSound() {
+    console.log("Woof! Woof!");
+  }
+}
+
+class Cat extends Animal {
+  makeSound() {
+    console.log("Meow!");
+  }
+}
+
+// Usage
+const genericAnimal = new Animal("Generic");
+const dog = new Dog("Buddy");
+const cat = new Cat("Whiskers");
+
+genericAnimal.makeSound(); // Output: Generic animal sound
+dog.makeSound(); // Output: Woof! Woof!
+cat.makeSound(); // Output: Meow!
+```
+
+### 4. Implement a Singleton:
+
+```js
+class Singleton {
+  static instance;
+
+  constructor() {
+    if (Singleton.instance) {
+      return Singleton.instance;
+    }
+
+    Singleton.instance = this;
+    this.creationTime = new Date();
+  }
+
+  getCreationTime() {
+    return this.creationTime;
+  }
+}
+
+// Usage
+const instance1 = new Singleton();
+console.log(instance1.getCreationTime());
+
+const instance2 = new Singleton();
+console.log(instance2.getCreationTime()); // Should be the same as instance1
+```
+
+### 5. Design Patterns (Observer Pattern)
+
+```js
+class Observer {
+  update(data) {
+    console.log(`Received update with data: ${data}`);
+  }
+}
+
+class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  removeObserver(observer) {
+    this.observers = this.observers.filter((obs) => obs !== observer);
+  }
+
+  notifyObservers(data) {
+    this.observers.forEach((observer) => observer.update(data));
+  }
+}
+
+// Usage
+const subject = new Subject();
+
+const observer1 = new Observer();
+const observer2 = new Observer();
+
+subject.addObserver(observer1);
+subject.addObserver(observer2);
+
+subject.notifyObservers("Some data"); // Both observers will receive the update
+```
+
+### 6. Composition and Interfaces:
+
+```js
+// Interface
+class CanFly {
+  fly() {
+    console.log("Flying...");
+  }
+}
+
+// Composable class
+class Bird {
+  constructor(name) {
+    this.name = name;
+  }
+
+  // Compose CanFly
+  fly() {
+    console.log(`${this.name} is flying.`);
+  }
+}
+
+// Usage
+const bird = new Bird("Sparrow");
+bird.fly();
+```
+
+### 7. Prototype-based Inheritance
+
+```js
+// Base object
+const vehiclePrototype = {
+  init: function (make, model) {
+    this.make = make;
+    this.model = model;
+  },
+  display: function () {
+    console.log(`Make: ${this.make}, Model: ${this.model}`);
+  },
+};
+
+// Create objects using the prototype
+const car = Object.create(vehiclePrototype);
+car.init("Toyota", "Camry");
+car.display();
+
+const bike = Object.create(vehiclePrototype);
+bike.init("Harley-Davidson", "Sportster");
+bike.display();
+```
+
+### 8. Callback Functions and Asynchronous Programming
+
+```js
+class DataService {
+  fetchData(callback) {
+    // Simulating asynchronous data fetching
+    setTimeout(() => {
+      const data = "Some fetched data";
+      callback(data);
+    }, 1000);
+  }
+}
+
+// Usage
+const dataService = new DataService();
+
+dataService.fetchData((data) => {
+  console.log(`Received data: ${data}`);
+});
+```
+
+### 9. Error Handling and Exceptions
+
+```js
+class CustomError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "CustomError";
+  }
+}
+
+class ErrorHandler {
+  handleError(error) {
+    if (error instanceof CustomError) {
+      console.log(`Custom error handled: ${error.message}`);
+    } else {
+      console.error(`Unhandled error: ${error.message}`);
+    }
+  }
+}
+
+// Usage
+const errorHandler = new ErrorHandler();
+
+try {
+  throw new CustomError("This is a custom error");
+} catch (error) {
+  errorHandler.handleError(error);
+}
+
+try {
+  throw new Error("This is a generic error");
+} catch (error) {
+  errorHandler.handleError(error);
+}
+```
